@@ -315,245 +315,292 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 /* ------------------------- Careers -------------------------------------------------- */
-document.addEventListener('DOMContentLoaded', () => {
-    const filters = document.querySelectorAll('.jobs-nav a');
-    const jobItems = document.querySelectorAll('.job-item');
+  // Job details data
+        const jobDetails = {
+            1: {
+                title: "Senior Software Engineer - .NET",
+                location: "Lahore, Pakistan",
+                category: "Technology",
+                type: "Full-time",
+                description: "We're looking for an experienced Senior .NET Software Engineer to join our development team. You'll be responsible for designing and developing high-performance enterprise applications.",
+                requirements: [
+                    "5+ years of .NET development experience",
+                    "Proficient in C#, ASP.NET Core",
+                    "Familiar with microservices architecture",
+                    "Experience with Azure or AWS cloud services",
+                    "Strong team collaboration skills"
+                ],
+                benefits: [
+                    "Competitive salary package",
+                    "Flexible working hours",
+                    "Professional training opportunities",
+                    "Health insurance",
+                    "Paid annual leave"
+                ]
+            },
+            2: {
+                title: "Project Manager - Digital Transformation",
+                location: "Remote",
+                category: "Business",
+                type: "Full-time",
+                description: "Seeking an experienced Project Manager to lead digital transformation projects. You'll be responsible for project planning, execution, and delivery, ensuring projects are completed on time and within budget.",
+                requirements: [
+                    "8+ years of project management experience",
+                    "PMP or related certification preferred",
+                    "Digital transformation project experience",
+                    "Excellent communication and leadership skills",
+                    "Agile development methodology experience"
+                ],
+                benefits: [
+                    "Fully remote work",
+                    "International team collaboration",
+                    "Career development opportunities",
+                    "Performance bonuses",
+                    "Technology equipment allowance"
+                ]
+            },
+            3: {
+                title: "UX/UI Designer",
+                location: "Karachi, Pakistan",
+                category: "Creative",
+                type: "Full-time",
+                description: "We're looking for a creative UX/UI Designer to design and optimize user interfaces, enhancing user experience across our products.",
+                requirements: [
+                    "3+ years of UX/UI design experience",
+                    "Proficient in Figma, Sketch and other design tools",
+                    "Knowledge of user research methods",
+                    "Responsive design experience",
+                    "Excellent visual design skills"
+                ],
+                benefits: [
+                    "Creative work environment",
+                    "Latest design tools",
+                    "Design portfolio showcase opportunities",
+                    "Industry conference attendance",
+                    "Flexible working hours"
+                ]
+            }
+        };
 
-    filters.forEach(filter => {
-        filter.addEventListener('click', function(e) {
-            e.preventDefault();
+        function openJobModal(jobId) {
+            const modal = document.getElementById('jobModal');
+            const job = jobDetails[jobId];
+            
+            document.getElementById('modalJobTitle').textContent = job.title;
+            
+            const content = `
+                <div class="modal-meta">
+                    <span>${job.location}</span>
+                    <span>${job.type}</span>
+                    <span class="category-badge ${
+                        job.category === 'Technology' ? 'badge-tech' :
+                        job.category === 'Business' ? 'badge-business' :
+                        'badge-creative'
+                    }">${job.category}</span>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>Job Description</h4>
+                    <p>${job.description}</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>Requirements</h4>
+                    <ul class="modal-list">
+                        ${job.requirements.map(req => `<li>${req}</li>`).join('')}
+                    </ul>
+                </div>
+                
+                <div class="modal-section">
+                    <h4>We Offer</h4>
+                    <ul class="modal-list">
+                        ${job.benefits.map(benefit => `<li>${benefit}</li>`).join('')}
+                    </ul>
+                </div>
+            `;
+            
+            document.getElementById('modalContent').innerHTML = content;
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
 
-            // Handle active class for filters
-            filters.forEach(f => f.classList.remove('active'));
-            this.classList.add('active');
+        function closeJobModal() {
+            const modal = document.getElementById('jobModal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
 
-            const filterValue = this.getAttribute('data-filter');
-
-            jobItems.forEach(item => {
-                if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeJobModal();
+            }
         });
-    });
-});
-
- class InfiniteSlider {
+  class CommunitySlider {
             constructor() {
-                this.wrapper = document.getElementById('sliderWrapper');
+                this.sliderWrapper = document.getElementById('sliderWrapper');
+                this.slides = this.sliderWrapper.children;
                 this.prevBtn = document.getElementById('prevBtn');
                 this.nextBtn = document.getElementById('nextBtn');
-                this.indicatorsContainer = document.getElementById('indicators');
-                this.speedSlider = document.getElementById('speedSlider');
-                this.speedValue = document.getElementById('speedValue');
+                this.indicators = document.querySelectorAll('.indicator');
                 
-                this.slides = [];
-                this.slideWidth = 330; // 300px + 30px margin
-                this.currentIndex = 0;
-                this.scrollSpeed = 5;
-                this.isScrolling = true;
-                this.animationId = null;
-                this.lastTimestamp = 0;
-                this.accumulatedDelta = 0;
-                
-                this.slideData = [
-                    { title: "Mountain Vista", category: "Nature", seed: "mountain1" },
-                    { title: "Ocean Waves", category: "Seascape", seed: "ocean1" },
-                    { title: "Forest Path", category: "Wilderness", seed: "forest1" },
-                    { title: "City Lights", category: "Urban", seed: "city1" },
-                    { title: "Desert Dunes", category: "Landscape", seed: "desert1" },
-                    { title: "Northern Lights", category: "Aurora", seed: "aurora1" },
-                    { title: "Tropical Beach", category: "Paradise", seed: "beach1" },
-                    { title: "Snowy Peaks", category: "Winter", seed: "snow1" },
-                    { title: "Autumn Colors", category: "Seasons", seed: "autumn1" },
-                    { title: "Starry Night", category: "Cosmos", seed: "stars1" }
-                ];
+                this.currentSlide = 0;
+                this.slidesToShow = this.getSlidesToShow();
+                this.totalSlides = this.slides.length;
+                this.maxSlide = this.totalSlides - this.slidesToShow;
                 
                 this.init();
             }
             
+            getSlidesToShow() {
+                if (window.innerWidth >= 1024) return 3;
+                if (window.innerWidth >= 768) return 2;
+                return 1;
+            }
+            
             init() {
-                this.createSlides();
-                this.createIndicators();
-                this.setupEventListeners();
-                this.startAutoScroll();
-            }
-            
-            createSlides() {
-                // Create enough slides to fill the viewport and beyond
-                const slidesNeeded = Math.ceil(window.innerWidth / this.slideWidth) + 5;
-                
-                for (let i = 0; i < slidesNeeded; i++) {
-                    const slideData = this.slideData[i % this.slideData.length];
-                    const slide = this.createSlide(slideData, i);
-                    this.wrapper.appendChild(slide);
-                    this.slides.push(slide);
-                }
-            }
-            
-            createSlide(data, index) {
-                const slide = document.createElement('div');
-                slide.className = 'slide';
-                slide.innerHTML = `
-                    <img src="https://picsum.photos/seed/${data.seed}/300/400.jpg" alt="${data.title}">
-                    <div class="slide-overlay">
-                        <h3 class="slide-title">${data.title}</h3>
-                        <p class="slide-category">${data.category}</p>
-                    </div>
-                `;
-                
-                slide.addEventListener('click', () => {
-                    this.pauseAutoScroll();
-                    // Add your click handler here
-                    console.log(`Clicked on ${data.title}`);
-                });
-                
-                return slide;
-            }
-            
-            createIndicators() {
-                for (let i = 0; i < this.slideData.length; i++) {
-                    const indicator = document.createElement('div');
-                    indicator.className = 'indicator';
-                    if (i === 0) indicator.classList.add('active');
-                    indicator.addEventListener('click', () => this.goToSlide(i));
-                    this.indicatorsContainer.appendChild(indicator);
-                }
-            }
-            
-            setupEventListeners() {
-                this.prevBtn.addEventListener('click', () => this.scrollPrev());
-                this.nextBtn.addEventListener('click', () => this.scrollNext());
-                
-                this.speedSlider.addEventListener('input', (e) => {
-                    this.scrollSpeed = parseInt(e.target.value);
-                    this.speedValue.textContent = this.scrollSpeed;
-                });
-                
-                // Pause on hover
-                this.wrapper.addEventListener('mouseenter', () => this.pauseAutoScroll());
-                this.wrapper.addEventListener('mouseleave', () => this.startAutoScroll());
-                
-                // Touch support
-                let touchStartX = 0;
-                let touchEndX = 0;
-                
-                this.wrapper.addEventListener('touchstart', (e) => {
-                    touchStartX = e.changedTouches[0].screenX;
-                    this.pauseAutoScroll();
-                });
-                
-                this.wrapper.addEventListener('touchend', (e) => {
-                    touchEndX = e.changedTouches[0].screenX;
-                    this.handleSwipe(touchStartX, touchEndX);
-                    this.startAutoScroll();
-                });
-                
-                // Window resize
-                window.addEventListener('resize', () => {
-                    this.handleResize();
-                });
-            }
-            
-            handleSwipe(startX, endX) {
-                if (endX < startX - 50) {
-                    this.scrollNext();
-                }
-                if (endX > startX + 50) {
-                    this.scrollPrev();
-                }
-            }
-            
-            handleResize() {
-                // Recalculate slide width based on new window size
-                this.slideWidth = this.slides[0].offsetWidth + 30;
-            }
-            
-            startAutoScroll() {
-                this.isScrolling = true;
-                this.lastTimestamp = performance.now();
-                this.animate();
-            }
-            
-            pauseAutoScroll() {
-                this.isScrolling = false;
-                if (this.animationId) {
-                    cancelAnimationFrame(this.animationId);
-                }
-            }
-            
-            animate(timestamp = 0) {
-                if (!this.isScrolling) return;
-                
-                const deltaTime = timestamp - this.lastTimestamp;
-                this.lastTimestamp = timestamp;
-                
-                // Calculate movement based on time and speed
-                this.accumulatedDelta += (this.scrollSpeed * deltaTime) / 16;
-                
-                if (this.accumulatedDelta >= 1) {
-                    const pixelsToMove = Math.floor(this.accumulatedDelta);
-                    this.accumulatedDelta -= pixelsToMove;
-                    
-                    this.currentIndex += pixelsToMove;
-                    this.updateSliderPosition();
-                }
-                
-                this.animationId = requestAnimationFrame((ts) => this.animate(ts));
-            }
-            
-            updateSliderPosition() {
-                // Move slides that have gone off-screen to the end
-                while (this.currentIndex >= this.slideWidth) {
-                    this.currentIndex -= this.slideWidth;
-                    const firstSlide = this.slides.shift();
-                    this.wrapper.appendChild(firstSlide);
-                    this.slides.push(firstSlide);
-                }
-                
-                this.wrapper.style.transform = `translateX(-${this.currentIndex}px)`;
+                this.updateSlider();
+                this.bindEvents();
                 this.updateIndicators();
-            }
-            
-            scrollNext() {
-                this.currentIndex += this.slideWidth;
-                this.updateSliderPosition();
-            }
-            
-            scrollPrev() {
-                // Move last slide to beginning
-                const lastSlide = this.slides.pop();
-                this.wrapper.insertBefore(lastSlide, this.wrapper.firstChild);
-                this.slides.unshift(lastSlide);
                 
-                this.currentIndex -= this.slideWidth;
-                this.updateSliderPosition();
+                // Auto-play
+                this.autoPlay = setInterval(() => {
+                    this.nextSlide();
+                }, 5000);
             }
             
-            goToSlide(index) {
-                // Calculate how many slides to move
-                const currentDataIndex = Math.floor(this.currentIndex / this.slideWidth) % this.slideData.length;
-                const slidesToMove = (index - currentDataIndex + this.slideData.length) % this.slideData.length;
+            bindEvents() {
+                this.prevBtn.addEventListener('click', () => this.prevSlide());
+                this.nextBtn.addEventListener('click', () => this.nextSlide());
                 
-                this.currentIndex += slidesToMove * this.slideWidth;
-                this.updateSliderPosition();
+                this.indicators.forEach((indicator, index) => {
+                    indicator.addEventListener('click', () => {
+                        this.currentSlide = index;
+                        this.updateSlider();
+                        this.updateIndicators();
+                        this.resetAutoPlay();
+                    });
+                });
+                
+                window.addEventListener('resize', () => {
+                    this.slidesToShow = this.getSlidesToShow();
+                    this.maxSlide = this.totalSlides - this.slidesToShow;
+                    if (this.currentSlide > this.maxSlide) {
+                        this.currentSlide = this.maxSlide;
+                    }
+                    this.updateSlider();
+                    this.updateIndicators();
+                });
+            }
+            
+            prevSlide() {
+                if (this.currentSlide > 0) {
+                    this.currentSlide--;
+                } else {
+                    this.currentSlide = this.maxSlide;
+                }
+                this.updateSlider();
+                this.updateIndicators();
+                this.resetAutoPlay();
+            }
+            
+            nextSlide() {
+                if (this.currentSlide < this.maxSlide) {
+                    this.currentSlide++;
+                } else {
+                    this.currentSlide = 0;
+                }
+                this.updateSlider();
+                this.updateIndicators();
+                this.resetAutoPlay();
+            }
+            
+            updateSlider() {
+                const translateX = -(this.currentSlide * (100 / this.slidesToShow));
+                this.sliderWrapper.style.transform = `translateX(${translateX}%)`;
             }
             
             updateIndicators() {
-                const currentDataIndex = Math.floor(this.currentIndex / this.slideWidth) % this.slideData.length;
-                const indicators = this.indicatorsContainer.children;
-                
-                for (let i = 0; i < indicators.length; i++) {
-                    indicators[i].classList.toggle('active', i === currentDataIndex);
-                }
+                const indicatorCount = this.maxSlide + 1;
+                this.indicators.forEach((indicator, index) => {
+                    if (index < indicatorCount) {
+                        indicator.style.display = 'block';
+                        if (index === this.currentSlide) {
+                            indicator.classList.add('active');
+                        } else {
+                            indicator.classList.remove('active');
+                        }
+                    } else {
+                        indicator.style.display = 'none';
+                    }
+                });
+            }
+            
+            resetAutoPlay() {
+                clearInterval(this.autoPlay);
+                this.autoPlay = setInterval(() => {
+                    this.nextSlide();
+                }, 5000);
             }
         }
         
-        // Initialize the slider when DOM is loaded
+        // Initialize slider when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
-            new InfiniteSlider();
+            new CommunitySlider();
+        });
+        
+   
+// Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards
+        document.querySelectorAll('.card').forEach(card => {
+            card.style.animationPlayState = 'paused';
+            observer.observe(card);
+        });
+
+        // Add interactive hover effects
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Parallax effect on mouse move
+        document.addEventListener('mousemove', (e) => {
+            const cards = document.querySelectorAll('.card');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+
+            cards.forEach((card, index) => {
+                const speed = (index + 1) * 0.5;
+                const xOffset = (x - 0.5) * speed * 20;
+                const yOffset = (y - 0.5) * speed * 20;
+                
+                card.style.transform = `translateX(${xOffset}px) translateY(${yOffset}px)`;
+            });
+        });
+
+        // Reset transform on mouse leave
+        document.addEventListener('mouseleave', () => {
+            document.querySelectorAll('.card').forEach(card => {
+                card.style.transform = 'translateY(0) scale(1)';
+            });
         });
 
 /* ------------------------- About-page -------------------------------------------------- */

@@ -815,5 +815,212 @@ document.addEventListener('DOMContentLoaded', function () {
                     item.classList.toggle('active');
                 });
             });
-        });index
+        });
+
+/* ------------------------- industry-page -------------------------------------------------- */
+           // Modal content data
+        const modalContent = {
+            startups: {
+                title: "Startups: The Engine of Innovation",
+                content: `
+                    <h3>Key Trends in Startup Innovation</h3>
+                    <p>The startup ecosystem is experiencing unprecedented growth driven by several key factors:</p>
+                    <ul>
+                        <li><strong>AI Integration:</strong> Startups are increasingly incorporating artificial intelligence into their core products, from customer service chatbots to predictive analytics platforms.</li>
+                        <li><strong>Remote-First Culture:</strong> The shift to remote work has enabled startups to tap into global talent pools and reduce operational costs significantly.</li>
+                        <li><strong>Sustainable Business Models:</strong> Environmental, Social, and Governance (ESG) criteria are becoming central to startup strategies and investor decisions.</li>
+                        <li><strong>Low-Code/No-Code Platforms:</strong> These platforms are democratizing software development, allowing non-technical founders to build sophisticated applications.</li>
+                    </ul>
+                    <h3>Success Factors</h3>
+                    <p>Successful startups in 2024 share common characteristics: strong founding teams, clear value propositions, scalable business models, and the ability to adapt quickly to market changes. The most promising sectors include fintech, healthtech, edtech, and climate tech.</p>
+                    <p>Investment patterns show a preference for startups that demonstrate clear paths to profitability and sustainable growth, rather than those focused solely on user acquisition at any cost.</p>
+                `
+            },
+            sme: {
+                title: "SMEs & Businesses: Digital Transformation Leaders",
+                content: `
+                    <h3>Digital Transformation for SMEs</h3>
+                    <p>Small and medium enterprises are embracing digital transformation at an accelerated pace. Key areas of focus include:</p>
+                    <ul>
+                        <li><strong>Cloud Computing:</strong> Adopting cloud-based solutions for better scalability, cost efficiency, and remote work capabilities.</li>
+                        <li><strong>Customer Experience:</strong> Implementing CRM systems and personalization tools to enhance customer engagement and loyalty.</li>
+                        <li><strong>Automation:</strong> Using robotic process automation (RPA) to streamline repetitive tasks and improve operational efficiency.</li>
+                        <li><strong>Data Analytics:</strong> Leveraging business intelligence tools to make data-driven decisions and identify new opportunities.</li>
+                    </ul>
+                    <h3>Challenges and Solutions</h3>
+                    <p>While digital transformation offers numerous benefits, SMEs face challenges including limited budgets, skill gaps, and cybersecurity concerns. Successful implementation requires careful planning, employee training, and choosing the right technology partners.</p>
+                    <p>Government initiatives and industry associations are providing support through grants, training programs, and resources to help SMEs navigate their digital journey successfully.</p>
+                `
+            },
+            healthcare: {
+                title: "Healthcare: The Digital Health Revolution",
+                content: `
+                    <h3>Transforming Healthcare Through Technology</h3>
+                    <p>The healthcare industry is undergoing a profound transformation driven by technological innovation:</p>
+                    <ul>
+                        <li><strong>Telemedicine:</strong> Virtual consultations have become mainstream, improving access to care and reducing wait times.</li>
+                        <li><strong>AI in Diagnostics:</strong> Machine learning algorithms are assisting doctors in detecting diseases earlier and more accurately.</li>
+                        <li><strong>Wearable Health Devices:</strong> Smartwatches and fitness trackers are enabling continuous health monitoring and preventive care.</li>
+                        <li><strong>Electronic Health Records:</strong> Digital records are improving care coordination and reducing medical errors.</li>
+                    </ul>
+                    <h3>Future Outlook</h3>
+                    <p>The future of healthcare lies in personalized medicine, where treatments are tailored to individual genetic profiles and lifestyle factors. Precision medicine, gene therapy, and advanced diagnostics will revolutionize how we prevent, diagnose, and treat diseases.</p>
+                    <p>Healthcare providers are also focusing on patient-centered care models that emphasize prevention, wellness, and patient engagement through digital health platforms and mobile applications.</p>
+                `
+            },
+            ecommerce: {
+                title: "E-commerce: The Future of Retail",
+                content: `
+                    <h3>E-commerce Trends Shaping Retail</h3>
+                    <p>The e-commerce landscape continues to evolve rapidly with several key trends:</p>
+                    <ul>
+                        <li><strong>Mobile Commerce:</strong> Smartphones are becoming the primary shopping device, driving the need for mobile-optimized experiences.</li>
+                        <li><strong>Social Commerce:</strong> Shopping directly through social media platforms is gaining popularity among younger consumers.</li>
+                        <li><strong>Augmented Reality:</strong> AR try-on features for fashion, furniture, and cosmetics are enhancing the online shopping experience.</li>
+                        <li><strong>Sustainable E-commerce:</strong> Consumers are increasingly favoring brands with eco-friendly practices and sustainable packaging.</li>
+                    </ul>
+                    <h3>Logistics and Fulfillment Innovation</h3>
+                    <p>The backbone of e-commerce success lies in efficient logistics and fulfillment. Same-day delivery, drone delivery, and automated warehouses are becoming standard expectations. Companies are investing heavily in supply chain technology to ensure fast, reliable, and cost-effective delivery options.</p>
+                    <p>Customer experience remains paramount, with personalization, easy returns, and excellent customer service being key differentiators in a crowded marketplace.</p>
+                `
+            },
+            wellness: {
+                title: "Wellness & Lifestyle: Holistic Health Revolution",
+                content: `
+                    <h3>The Wellness Industry Evolution</h3>
+                    <p>The wellness industry is expanding beyond traditional fitness to encompass holistic health:</p>
+                    <ul>
+                        <li><strong>Mental Health Awareness:</strong> Increased focus on mental wellness through meditation apps, therapy platforms, and stress management tools.</li>
+                        <li><strong>Personalized Nutrition:</strong> DNA-based nutrition plans and meal delivery services tailored to individual health goals.</li>
+                        <li><strong>Wearable Technology:</strong> Advanced fitness trackers monitoring sleep, stress levels, and overall health metrics.</li>
+                        <li><strong>Sustainable Living:</strong> Eco-friendly products and practices that promote both personal and planetary health.</li>
+                    </ul>
+                    <h3>Technology Integration</h3>
+                    <p>Technology is playing a crucial role in making wellness more accessible and personalized. AI-powered health coaches, virtual reality meditation experiences, and smart home devices that promote healthy living are becoming increasingly common.</p>
+                    <p>The future of wellness lies in integrated platforms that combine physical health, mental well-being, nutrition, and lifestyle factors into a comprehensive approach to holistic health management.</p>
+                `
+            },
+            tech: {
+                title: "Tech & SaaS: Driving Digital Transformation",
+                content: `
+                    <h3>SaaS and Technology Trends</h3>
+                    <p>The technology sector continues to innovate at breakneck speed:</p>
+                    <ul>
+                        <li><strong>Cloud-Native Architecture:</strong> Microservices and containerization enabling scalable, resilient applications.</li>
+                        <li><strong>AI-Powered Features:</strong> Machine learning integration becoming standard across software products.</li>
+                        <li><strong>Low-Code/No-Code Platforms:</strong> Democratizing software development for business users.</li>
+                        <li><strong>API-First Design:</strong> Creating modular, interoperable systems that integrate seamlessly.</li>
+                    </ul>
+                    <h3>Industry-Specific Solutions</h3>
+                    <p>SaaS companies are increasingly developing vertical-specific solutions tailored to the unique needs of different industries. From healthcare to manufacturing, specialized software is driving efficiency and innovation in sector-specific ways.</p>
+                    <p>The rise of platform ecosystems and marketplaces is creating new opportunities for integration and collaboration, while subscription-based pricing models continue to dominate the software industry.</p>
+                `
+            }
+        };
+
+    
+
+        // Industry navigation
+        const navItems = document.querySelectorAll('.industry-trend-industry-nav-item');
+        const sections = document.querySelectorAll('.industry-trend-industry-section');
+
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const targetIndustry = item.dataset.industry;
+                
+                // Update active nav item
+                navItems.forEach(nav => nav.classList.remove('active'));
+                item.classList.add('active');
+                
+                // Scroll to section
+                const targetSection = document.getElementById(`industry-trend-${targetIndustry}`);
+                targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // Intersection Observer for section animations
+        const observersOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observers = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Update active nav item based on scroll
+                    const sectionId = entry.target.id;
+                    navItems.forEach(nav => {
+                        if (nav.dataset.industry === sectionId.replace('industry-trend-', '')) {
+                            navItems.forEach(n => n.classList.remove('active'));
+                            nav.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, observersOptions);
+
+        sections.forEach(section => {
+            observers.observe(section);
+        });
+
+        // Modal functions
+        function openModal(industry) {
+            const modal = document.getElementById('industry-trend-modal');
+            const modalTitle = document.getElementById('industry-trend-modalTitle');
+            const modalBody = document.getElementById('industry-trend-modalBody');
+            const loadingBar = document.getElementById('industry-trend-loadingBar');
+            
+            // Show loading bar
+            loadingBar.classList.add('active');
+            
+            // Simulate loading
+            setTimeout(() => {
+                modalTitle.textContent = modalContent[industry].title;
+                modalBody.innerHTML = modalContent[industry].content;
+                modal.classList.add('show');
+                loadingBar.classList.remove('active');
+            }, 300);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('industry-trend-modal');
+            modal.classList.remove('show');
+        }
+
+        // Close modal on outside click
+        document.getElementById('industry-trend-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'industry-trend-modal') {
+                closeModal();
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Add parallax effect to hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.industry-trend-hero');
+            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
+
+        // Animate elements on load
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
+            
+            // Animate hero content
+            const heroContent = document.querySelector('.industry-trend-hero-content');
+            heroContent.style.animation = 'industry-trend-fadeInUp 1s ease-out';
+        });
+    
 

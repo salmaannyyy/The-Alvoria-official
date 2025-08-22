@@ -30,8 +30,8 @@ body.no-scroll {
 
 /* --- 2. Header & Navigation (Desktop) --- */
 .header {
-    background-color: var(--color-bg);
-    border-bottom: 1px solid var(--border-color);
+    background-color: #2b2d42;
+    border-bottom: 1px solid #2b2d42;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -77,7 +77,7 @@ body.no-scroll {
     }
 
     .nav-link {
-        color: var(--text-dark);
+        color: var(--color-bg);
         font-weight: 500;
         text-decoration: none;
         padding: 0 0.25rem;
@@ -95,6 +95,7 @@ body.no-scroll {
 
     /* --- 3. Dropdown & Mega Menu (Desktop) --- */
     .dropdown {
+          content: '▼';
         position: absolute;
         top: 100%;
         left: 190%;
@@ -106,6 +107,18 @@ body.no-scroll {
         padding-top: 10px;
     }
 
+/* Add this to your CSS */
+.dropdown > a i {
+  margin-left: 5px;
+  font-size: 0.8em;
+}
+/* Add dropdown icon using pseudo-element */
+.dropdown > a::after {
+  content: '▼';
+  margin-left: 5px;
+  font-size: 0.6em;
+  vertical-align: middle;
+}
     .nav-item:hover>.dropdown {
         opacity: 1;
         visibility: visible;
@@ -254,7 +267,7 @@ body.no-scroll {
     display: block;
     width: 100%;
     height: 3px;
-    background-color: var(--text-dark);
+    background-color: var(--color-bg);
     border-radius: 3px;
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
@@ -1472,11 +1485,19 @@ section {
 
 /* Hero Section */
 .About-hero-section {
-    background-color: var(--text-dark);
+    background-color: #2b2d42;
     color: var(--color-bg);
     height: 90vh;
     display: flex;
     align-items: center;
+}
+
+.About-hero-section {
+  background: linear-gradient(180deg, #2b2d42 50%, #ffffff 50%);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .About-hero-container { display: flex; justify-content: space-between; align-items: center; }
 .About-hero-text h1 { font-size: 5rem; font-weight: 300; margin: 0; margin-right: 400px; line-height: 1.1; }
@@ -1554,6 +1575,8 @@ section {
     color: #34495e;
     z-index: 10; /* Ensures the title stays on top of any overlapping images */
 }
+
+
 
 /* --- General Image Wrapper Styling --- */
 .About-image-wrapper {
@@ -1670,7 +1693,7 @@ section {
 .About-leadership-section {
     width: 100%;
     background-color: #202945; /* Dark blue background */
-    color: #ffffff;
+    color: var(--color-bg);
     padding: 5rem 0;
     overflow: hidden; /* Important for the slider */
 }
@@ -1694,13 +1717,28 @@ section {
     text-transform: uppercase;
     color: #a0aec0;
     margin-bottom: 1rem;
+    
+}
+p.About-eyebrow-title {
+  position: relative;
+  text-decoration: none;
 }
 
+p.About-eyebrow-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px; /* 调整这个值来改变下划线与文字的距离 */
+  width: 100%;
+  height: 2px; /* 调整这个值来改变下划线粗细 */
+  background-color: white;
+}
 .About-section-headline {
     font-size: 2.25rem;
     font-weight: 400;
     line-height: 1.4;
     max-width: 650px;
+    color: var(--color-bg);
 }
 
 /* --- Slider Mechanism --- */
@@ -2850,7 +2888,7 @@ section {
         /* Final CTA Section */
         .indexfinal-cta-section {
             background: #2A7B9B;
-background: linear-gradient(90deg,rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(237, 221, 83, 1) 100%);
+background: linear-gradient(90deg, var(--text-dark) 0%, var(--color-bg) 50%, var(--text-dark) 100%);
             padding: 5rem 0;
             text-align: center;
         }

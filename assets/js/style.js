@@ -918,7 +918,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         };
 
-    
+    // industry page ///
 
         // Industry navigation
         const navItems = document.querySelectorAll('.industry-trend-industry-nav-item');
@@ -1024,3 +1024,39 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     
 
+/* ------------------------- startups-page -------------------------------------------------- */
+   // Smooth scroll for CTA buttons
+        document.querySelectorAll('.alvoria-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Add your navigation logic here
+                console.log('Button clicked!');
+            });
+        });
+
+/* ------------------------- blogs-page -------------------------------------------------- */
+  // Simple form submission handling
+        document.querySelector('.mck-blog-email-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const emailInput = this.querySelector('.mck-blog-email-input');
+            if (emailInput.value) {
+                alert('Thank you for subscribing with: ' + emailInput.value);
+                emailInput.value = '';
+            }
+        });
+        
+        // Browse all posts button functionality
+        document.querySelector('.mck-blog-browse-btn').addEventListener('click', function() {
+            alert('Redirecting to all posts...');
+        });
+
+          // Add click event listeners to all "Read more" links
+        document.querySelectorAll('.mck-blogs-card-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const cardTitle = this.closest('.mck-blogs-card').querySelector('.mck-blogs-card-title').textContent;
+                console.log(`Navigating to article: ${cardTitle}`);
+                // In a real implementation, this would navigate to the article page
+                alert(`Opening article: ${cardTitle}`);
+            });
+        });

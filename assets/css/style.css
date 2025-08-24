@@ -4346,39 +4346,108 @@ background: linear-gradient(90deg, var(--text-dark) 0%, var(--color-bg) 50%, var
             padding: 0 20px;
         }
 
-        /* --- 3. Hero Section --- */
-        .business-hero-section {
-            min-height: 80vh;
+    
+        
+       /* SME business content container for consistent layout */
+        .alvoria-sme-container { 
+            max-width: 1100px; 
+            margin: 0 auto; 
+            padding: 0 2rem; 
+        }
+        
+        /* SME business typography hierarchy */
+        h1, h2 { 
+            font-family: var(--font-serif); 
+            color: var(--color-bg); 
+            font-weight: 700; 
+        }
+        
+        /* SME business headline sizing - responsive for all devices */
+        h1 { 
+            font-size: clamp(2.5rem, 5vw, 4rem); 
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+        }
+        
+      
+        
+        /* --- HERO SECTION STYLES --- */
+        /* SME business hero: Professional first impression */
+        .alvoria-sme-hero-section {
+            height: 100vh;
+            position: relative;
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--business-color-text-light);
-            background: linear-gradient(rgba(26, 32, 44, 0.7), rgba(26, 32, 44, 0.7)), url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1632&auto=format&fit=crop') no-repeat center center/cover;
+            justify-content: flex-start;
+            color: var(--color-white);
+            padding: 0;
+            overflow: hidden;
         }
-
-        .business-hero-title {
-            font-size: clamp(2.8rem, 6vw, 4rem);
+        
+        /* SME business video background: Dynamic yet professional */
+        .alvoria-sme-hero-video-background {
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            z-index: -2; 
+            overflow: hidden;
+        }
+        
+        .alvoria-sme-hero-video-background video { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+        }
+        
+        /* SME business overlay: Ensuring text readability over video */
+        .alvoria-sme-hero-section::before {
+            content: ''; 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            background: linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 100%); 
+            z-index: -1;
+        }
+        
+        /* SME business hero content: Professional messaging area */
+        .alvoria-sme-hero-content { 
+            max-width: 650px; 
+            padding: 2rem;
+        }
+        
+        .alvoria-sme-hero-content p { 
+            font-size: 1.25rem; 
             margin-bottom: 2rem;
             color: var(--color-bg);
         }
-
-        .business-btn {
-            display: inline-block;
-            padding: 0.8rem 2.5rem;
-            background-color: var(--border-color);
-            color: var(--text-dark);
-            text-decoration: none;
-            font-weight: 600;
-            border-radius: 50px;
-            transition: background-color var(--business-transition-speed);
+        
+        /* SME business call-to-action: Professional scroll indicator */
+        .alvoria-sme-scroll-down-arrow {
+            position: absolute; 
+            bottom: 3rem; 
+            left: 50%; 
+            transform: translateX(-50%);
+            color: var(--color-white); 
+            text-decoration: none; 
+            font-size: 2rem;
         }
-
-        .business-btn:hover {
-            background-color: var(--text-dark);
-            color: var(--color-bg);
+        
+      
+        
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 768px) {
+            h1 { 
+                font-size: 2.5rem; 
+            }
+            
+            .alvoria-sme-hero-content p { 
+                font-size: 1.1rem; 
+            }
         }
-
         /* --- 4. Main Content Sections --- */
         .business-content-grid {
             display: grid;
@@ -4427,257 +4496,803 @@ background: linear-gradient(90deg, var(--text-dark) 0%, var(--color-bg) 50%, var
             transform: translateX(5px);
         }
 
-        
-        /* --- 6. Certifications Section --- */
-        .business-certifications-section {
-            text-align: center;
-            padding: 5rem 0;
-        }
+        /* Business content container for consistent layout */
+.container { 
+    max-width: 1100px; 
+    margin: 0 auto; 
+    padding: 0 2rem; 
+}
 
-        .business-logo-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 3rem;
-            margin-top: 3rem;
-        }
+/* Business section spacing for professional presentation */
+section { 
+    padding: 6rem 0; 
+}
 
-        .business-logo-item {
-            padding: 1rem;
-            border: 1px solid var(--business-color-border);
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
+/* Business typography hierarchy */
+h1, h2 { 
+    font-family: var(--font-serif); 
+    color: var(--color-dark); 
+    font-weight: 700; 
+}
 
-        .business-logo-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
+/* Business headline sizing - responsive for all devices */
+h1 { 
+    font-size: clamp(2.5rem, 5vw, 4rem); 
+    /* Business presentation: Strong first impression */
+}
 
-        .business-logo-item img {
-            height: 60px;
-            filter: grayscale(1);
-            opacity: 0.7;
-            transition: all var(--business-transition-speed);
-        }
+h2 { 
+    font-size: clamp(2rem, 4vw, 3rem); 
+    /* Business section headers: Clear hierarchy */
+}
 
-        .business-logo-item:hover img {
-            filter: none;
+/* --- 2. ANIMATION BASE STYLES --- */
+/* Business presentation: Smooth, professional animations */
+.animate-on-scroll {
+    opacity: 0;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Business entrance animations - subtle and professional */
+.fade-in-up { 
+    transform: translateY(40px); 
+    /* Business content reveal: Upward motion */
+}
+
+.fade-in { 
+    transform: scale(0.95); 
+    /* Business element reveal: Scaling effect */
+}
+
+.slide-in-left { 
+    transform: translateX(-50px); 
+    /* Business content entry: From left */
+}
+
+.slide-in-right { 
+    transform: translateX(50px); 
+    /* Business content entry: From right */
+}
+
+/* Business animation completion state */
+.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+
+/* Business call-to-action: Professional scroll indicator */
+.scroll-down-arrow {
+    position: absolute; 
+    bottom: 3rem; 
+    left: 50%; 
+    transform: translateX(-50%);
+    color: var(--color-white); 
+    text-decoration: none; 
+    font-size: 2rem;
+    animation: bounce 2s infinite;
+    /* Business UX: Clear navigation cue */
+}
+
+/* --- 4. INTRO CTA SECTION --- */
+/* Business introduction: Clear value proposition */
+.intro-section { 
+    background-color: var(--color-light-gray); 
+    text-align: center; 
+    /* Business presentation: Neutral background for focus */
+}
+
+.intro-section h2 { 
+    font-family: var(--font-sans); 
+    font-size: 2.5rem; 
+    font-weight: 500; 
+    /* Business headline: Professional sans-serif for clarity */
+}
+
+.intro-section p { 
+    max-width: 700px; 
+    margin: 1.5rem auto 2.5rem auto; 
+    /* Business content: Centered and constrained for readability */
+}
+
+
+
+/* --- 5. VALUE PROP & MOMENT SECTIONS --- */
+/* Business layout: Professional grid system */
+.grid-layout { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 4rem; 
+    align-items: center; 
+    /* Business content: Balanced, professional layout */
+}
+
+/* Business features: Clear value proposition items */
+.features-list { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 1.5rem; 
+    /* Business organization: Vertical feature flow */
+}
+
+.feature-item {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #e5e7eb;
+    position: relative;
+    padding-left: 2.5rem;
+    /* Business design: Clear feature separation */
+}
+
+.feature-item:last-child { 
+    border-bottom: none; 
+    /* Business design: Clean list ending */
+}
+
+/* Business feature indicators: Visual bullet points */
+.feature-item::before {
+    content: ''; 
+    position: absolute; 
+    left: 0; 
+    top: 1.8rem;
+    width: 20px; 
+    height: 20px; 
+    background-color: var(--color-primary);
+    /* Business visual: Consistent feature markers */
+}
+
+.feature-item h3 { 
+    font-family: var(--font-sans); 
+    font-size: 1.2rem; 
+    color: var(--color-dark); 
+    margin: 0 0 0.5rem 0; 
+    /* Business typography: Clear feature titles */
+}
+
+/* Business imagery: Professional presentation */
+.image-content img { 
+    width: 100%; 
+    border-radius: 8px; 
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1); 
+    /* Business visuals: Professional image treatment */
+}
+
+/* --- 6. KEYFRAME ANIMATIONS --- */
+/* Business animation: Subtle bounce effect */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { 
+        transform: translateY(0) translateX(-50%); 
+    }
+    40% { 
+        transform: translateY(-20px) translateX(-50%); 
+    }
+    60% { 
+        transform: translateY(-10px) translateX(-50%); 
+    }
+    /* Business motion: Professional, subtle animation */
+}
+
+/* --- 7. RESPONSIVE DESIGN --- */
+/* Business mobile: Professional presentation on all devices */
+@media (max-width: 992px) {
+    .grid-layout { 
+        grid-template-columns: 1fr; 
+        /* Business layout: Single column on medium screens */
+    }
+    .moment-section .image-content { 
+        grid-row: 1; 
+        /* Business layout: Image first on mobile */
+    }
+}
+
+@media (max-width: 768px) {
+    h1 { 
+        font-size: 2.5rem; 
+        /* Business mobile: Smaller headline */
+    }
+    h2 { 
+        font-size: 1.8rem; 
+        /* Business mobile: Smaller subheadings */
+    }
+    section { 
+        padding: 4rem 0; 
+        /* Business mobile: Reduced spacing */
+    }
+}
+
+
+ ----------healthcare-page------------
+
+
+        /* Hero Section */
+.healthcare-hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Medical Icons Background */
+.healthcare-medical-icons {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.healthcare-icon {
+    position: absolute;
+    font-size: 3rem;
+    opacity: 0.05;
+    animation: drift 25s infinite linear;
+}
+
+.healthcare-icon-1 {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.healthcare-icon-2 {
+    top: 60%;
+    right: 15%;
+    animation-delay: 8s;
+}
+
+.healthcare-icon-3 {
+    bottom: 20%;
+    left: 20%;
+    animation-delay: 16s;
+}
+
+@keyframes drift {
+    0% {
+        transform: translateX(0) translateY(0) rotate(0deg);
+    }
+    25% {
+        transform: translateX(30px) translateY(-30px) rotate(90deg);
+    }
+    50% {
+        transform: translateX(-20px) translateY(20px) rotate(180deg);
+    }
+    75% {
+        transform: translateX(-30px) translateY(-20px) rotate(270deg);
+    }
+    100% {
+        transform: translateX(0) translateY(0) rotate(360deg);
+    }
+}
+
+/* Content Container */
+.healthcare-hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    background: linear-gradient(to bottom, var(--color-accent-teal), var(--color-bg-grey));
+    color: rgb(29, 26, 26);
+}
+
+/* Text Content */
+.healthcare-text-content {
+    animation: fadeInLeft 1s ease-out;
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.healthcare-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--text-accent) 0%, var(--text-accent) 100%);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    animation: slideDown 0.8s ease-out 0.3s both;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.healthcare-hero-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    animation: fadeInUp 1s ease-out 0.5s both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.healthcare-hero-title span {
+    color: var(--color-text);
+    background-clip: text;
+}
+
+.healthcare-hero-subtitle {
+    font-size: 1.2rem;
+    color: #546e7a;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    animation: fadeInUp 1s ease-out 0.7s both;
+}
+
+.healthcare-key-points {
+    margin-bottom: 2.5rem;
+    animation: fadeInUp 1s ease-out 0.9s both;
+}
+
+.healthcare-key-point {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    color: #37474f;
+}
+
+.healthcare-key-point-icon {
+    width: 24px;
+    height: 24px;
+    background: linear-gradient(135deg, var(--text-accent) 0%, #2196f3 100%);
+    border-radius: 50%;
+    margin-right: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+}
+
+/* CTA Button */
+.healthcare-cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #4caf50 0%, #2196f3 100%);
+    color: white;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3);
+    transition: all 0.3s ease;
+    animation: fadeInUp 1s ease-out 1.1s both;
+    position: relative;
+    overflow: hidden;
+}
+
+.healthcare-cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(76, 175, 80, 0.4);
+}
+
+.healthcare-cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.healthcare-cta-button:hover::before {
+    left: 100%;
+}
+
+/* Visual Content */
+.healthcare-visual-content {
+    position: relative;
+    animation: fadeInRight 1s ease-out;
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.healthcare-feature-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    animation: slideInUp 0.8s ease-out 0.5s both;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.healthcare-feature-card h3 {
+    color: #1a237e;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.healthcare-feature-card p {
+    color: #546e7a;
+    line-height: 1.6;
+}
+
+.healthcare-stats-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    animation: fadeIn 1s ease-out 1.3s both;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.healthcare-stat-box {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.healthcare-stat-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.healthcare-stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-accent);
+    display: block;
+}
+
+.healthcare-stat-label {
+    font-size: 0.9rem;
+    color: #546e7a;
+    margin-top: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .healthcare-hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .healthcare-text-content {
+        animation: fadeInTop 1s ease-out;
+    }
+    
+    @keyframes fadeInTop {
+        from {
+            opacity: 0;
+            transform: translateY(-50px);
+        }
+        to {
             opacity: 1;
+            transform: translateY(0);
         }
-
-        .business-eyebrow {
-            display: block;
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 1rem;
-            color: var(--text-gray);
+    }
+    
+    .healthcare-visual-content {
+        animation: fadeInBottom 1s ease-out;
+    }
+    
+    @keyframes fadeInBottom {
+        from {
+            opacity: 0;
+            transform: translateY(50px);
         }
-
-        .business-highlight {
-            color: var(--text-gray);
+        to {
+            opacity: 1;
+            transform: translateY(0);
         }
+    }
+    
+    .healthcare-stats-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .healthcare-key-point {
+        justify-content: center;
+        text-align: left;
+    }
+}
 
-          .business-container {
+/* --- 4. Main Content Sections --- */
+.healthcare-strategies-section {
+    
+    background-color: var(--color-bg);
+    /* Subtle texture background from HeroPatterns.com */
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e2e8f0' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.healthcare-grid-layout {
+    margin: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: flex-start;
+}
+
+@media (min-width: 992px) {
+    .healthcare-grid-layout {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.healthcare-grid-layout h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.healthcare-key-stats {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+}
+
+.healthcare-key-stats h4 {
+    font-weight: 600;
+    color: var(--color-accent-blue);
+    margin-bottom: 1rem;
+}
+
+.healthcare-key-stats ul {
+    list-style-type: '✓  ';
+    padding-left: 1.5rem;
+}
+
+.healthcare-key-stats li {
+    margin-bottom: 0.75rem;
+    color: var(--color-text-secondary);
+}
+
+.healthcare-strategies-list ol {
+    list-style: none;
+    counter-reset: strategies-counter;
+}
+
+.healthcare-strategies-list li {
+    counter-increment: strategies-counter;
+    margin-bottom: 1.5rem;
+    padding-left: 2.5rem;
+    position: relative;
+}
+
+.healthcare-strategies-list li::before {
+    content: counter(strategies-counter);
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-accent-blue);
+    background-color: #eaf2ff;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.healthcare-strategies-list strong {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+/* --- 5. Testimonial Snippet Section --- */
+.healthcare-testimonial-snippet {
+    padding: 5rem 0;
+}
+
+.healthcare-testimonial-card {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: var(--color-bg);
+    color: var(--text-dark);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+@media (min-width: 992px) {
+    .healthcare-testimonial-card {
+        grid-template-columns: 350px 1fr;
+    }
+}
+
+.healthcare-testimonial-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+@media (min-width: 992px) {
+    .healthcare-testimonial-image {
+        height: 100%;
+    }
+}
+
+.healthcare-testimonial-content {
+    padding: 3rem;
+}
+
+.healthcare-testimonial-logo {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+}
+
+.healthcare-testimonial-text {
+    color: var(--text-dark);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+}
+
+.healthcare-testimonial-results {
+    display: flex;
+    gap: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #374151;
+}
+
+.healthcare-result-item h4 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-dark);
+}
+
+.healthcare-result-item p {
+    color: #9ca3af;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* --- 6. Buyer's Journey Section --- */
+.healthcare-three-col-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+}
+
+@media (min-width: 992px) {
+    .healthcare-three-col-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.healthcare-three-col-grid h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.healthcare-intro-section {
+    padding-bottom: 3rem;
+}
+
+
+---------------- e -commmerce------------
+
+  .container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 20px;
         }
 
-        .business-header {
-            text-align: center;
-            margin-bottom: 60px;
-            animation: business-fadeInDown 1s ease-out;
-        }
-
-        .business-header h1 {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            color: #2c3e50;
-            position: relative;
-            display: inline-block;
-        }
-
-        .business-header h1::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--text-accent), var(--text-accent));
-            border-radius: 2px;
-        }
-
-        .business-header p {
-            font-size: 1.2rem;
-            color: #7f8c8d;
-            max-width: 700px;
+        .ecommerce-container1 {
+            width: 100%;
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 80px 20px;
         }
 
-        .business-categories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
+        .ecommerce-section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
         }
 
-        .business-category-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            transition: all 0.4s ease;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: business-fadeInUp 0.8s ease forwards;
-        }
-
-        .business-category-card:nth-child(1) { animation-delay: 0.1s; }
-        .business-category-card:nth-child(2) { animation-delay: 0.2s; }
-        .business-category-card:nth-child(3) { animation-delay: 0.3s; }
-        .business-category-card:nth-child(4) { animation-delay: 0.4s; }
-        .business-category-card:nth-child(5) { animation-delay: 0.5s; }
-        .business-category-card:nth-child(6) { animation-delay: 0.6s; }
-
-        .business-category-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-        }
-
-        .business-card-header {
-            padding: 20px;
-            background: linear-gradient(135deg, var(--text-accent), var(--text-accent));
+        .ecommerce-btn {
+            display: inline-block;
+            background-color: var(--color-accent-pink);
             color: white;
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all var(--transition-speed);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .ecommerce-btn:hover {
+            background-color: #e62e5a;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 51, 102, 0.3);
+        }
+
+        /* --- 3. Hero Section --- */
+        .ecommerce-hero-section {
+            text-align: center;
+            background-color: #2b2d42;
+            padding: 100px 0;
             position: relative;
             overflow: hidden;
         }
 
-        .business-card-header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: rgba(255,255,255,0.1);
-            transform: rotate(45deg);
-            transition: all 0.6s ease;
-        }
+       
 
-        .business-category-card:hover .business-card-header::before {
-            top: -20%;
-            right: -20%;
-        }
-
-        .business-card-header h2 {
-            font-size: 1.5rem;
+        .ecommerce-hero-section .ecommerce-container {
             position: relative;
-            z-index: 1;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            z-index: 2;
+            animation: ecommerceFadeInUp 1s ease-out;
         }
 
-        .business-card-body {
-            padding: 25px;
-        }
-
-        .business-section {
-            margin-bottom: 20px;
-            position: relative;
-            padding-left: 30px;
-        }
-
-        .business-section:last-child {
-            margin-bottom: 0;
-        }
-
-        .business-section-title {
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-            color: #2c3e50;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .business-section-title i {
-            color: var(--text-accent);
-        }
-
-        .business-section-content {
-            color: #555;
-            line-height: 1.6;
-        }
-
-        .business-strategy-item {
-            margin-bottom: 12px;
-            padding-left: 15px;
-            position: relative;
-        }
-
-        .business-strategy-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .business-strategy-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 10px;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--text-accent);
-        }
-
-        .business-strategy-name {
-            font-weight: 600;
-            color: #2c3e50;
-        }
-
-        .business-solution-list {
-            list-style-type: none;
-        }
-
-        .business-solution-item {
-            margin-bottom: 8px;
-            padding-left: 25px;
-            position: relative;
-            transition: transform 0.3s ease;
-        }
-
-        .business-solution-item:hover {
-            transform: translateX(5px);
-        }
-
-        .business-solution-item::before {
-            content: '\f00c';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            position: absolute;
-            left: 0;
-            top: 2px;
-            color: #2ecc71;
-        }
-
-        @keyframes business-fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes business-fadeInUp {
+        @keyframes ecommerceFadeInUp {
             from {
                 opacity: 0;
                 transform: translateY(30px);
@@ -4688,12 +5303,563 @@ background: linear-gradient(90deg, var(--text-dark) 0%, var(--color-bg) 50%, var
             }
         }
 
-        @media (max-width: 768px) {
-            .business-header h1 {
-                font-size: 2.2rem;
+        .ecommerce-hero-title {
+            font-size: clamp(2.8rem, 6vw, 4rem);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: white;
+            animation: ecommerceFadeIn 1.5s ease-out;
+        }
+
+        @keyframes ecommerceFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .ecommerce-hero-subtitle {
+            font-size: 1.1rem;
+            color: white;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
+            animation: ecommerceFadeIn 2s ease-out;
+        }
+
+        .ecommerce-hero-section .ecommerce-btn {
+            animation: ecommerceFadeInUp 1.5s ease-out;
+        }
+
+        /* --- 4. Client Logos Section --- */
+        .ecommerce-client-logos-section {
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+            padding: 40px 0;
+        }
+
+        .ecommerce-client-logos-wrapper {
+            text-align: center;
+        }
+
+        .ecommerce-client-logos-wrapper .eyebrow {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--color-text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .ecommerce-logos-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .ecommerce-logos-grid img {
+            height: 30px;
+            filter: grayscale(1);
+            opacity: 0.6;
+            transition: all var(--transition-speed);
+        }
+
+        .ecommerce-logos-grid img:hover {
+            filter: grayscale(0);
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+       
+        .e-commerce-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .e-commerce-header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: e-commerce-fadeIn 1s ease-out;
+        }
+
+        .e-commerce-header h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .e-commerce-header p {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+        }
+
+        .e-commerce-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        /* Left column - News articles */
+        .e-commerce-news-section {
+            flex: 2;
+            min-width: 300px;
+        }
+
+        .e-commerce-news-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: e-commerce-slideInLeft 0.8s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .e-commerce-news-card:nth-child(1) { animation-delay: 0.1s; }
+        .e-commerce-news-card:nth-child(2) { animation-delay: 0.2s; }
+        .e-commerce-news-card:nth-child(3) { animation-delay: 0.3s; }
+        .e-commerce-news-card:nth-child(4) { animation-delay: 0.4s; }
+        .e-commerce-news-card:nth-child(5) { animation-delay: 0.5s; }
+
+        .e-commerce-news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .e-commerce-news-title {
+            font-size: 1.2rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .e-commerce-news-summary {
+            color: #7f8c8d;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .e-commerce-read-more {
+            display: inline-block;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .e-commerce-read-more:hover {
+            color: #2980b9;
+        }
+
+        .e-commerce-read-more i {
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .e-commerce-read-more:hover i {
+            transform: translateX(3px);
+        }
+
+        /* Right column - Quick links and related content */
+        .e-commerce-sidebar {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .e-commerce-quick-links {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            margin-bottom: 20px;
+            animation: e-commerce-slideInRight 0.8s ease-out;
+            animation-delay: 0.6s;
+            animation-fill-mode: both;
+        }
+
+        .e-commerce-section-title {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+
+        .e-commerce-link-item {
+            display: block;
+            padding: 10px 0;
+            color: #34495e;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .e-commerce-link-item:last-child {
+            border-bottom: none;
+        }
+
+        .e-commerce-link-item:hover {
+            color: #3498db;
+            padding-left: 5px;
+        }
+
+        .e-commerce-link-item i {
+            margin-right: 8px;
+            color: #3498db;
+        }
+
+        .e-commerce-video-section {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            animation: e-commerce-slideInRight 0.8s ease-out;
+            animation-delay: 0.7s;
+            animation-fill-mode: both;
+        }
+
+        .e-commerce-video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+
+        .e-commerce-video-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .e-commerce-play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background-color: rgba(52, 152, 219, 0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .e-commerce-play-button:hover {
+            background-color: rgba(41, 128, 185, 0.9);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .e-commerce-play-button i {
+            color: white;
+            font-size: 24px;
+            margin-left: 5px;
+        }
+
+        .e-commerce-video-caption {
+            font-size: 0.95rem;
+            color: #7f8c8d;
+            text-align: center;
+        }
+
+       -----------lifestle----------
+    
+     
+
+        /* Experiences Section */
+        .lifestyle-experiences-section {
+            padding: 5rem 5%;
+            background-color: var(--lifestyle-white-color);
+        }
+
+        .lifestyle-experiences-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .lifestyle-experience-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--lifestyle-transition);
+            position: relative;
+        }
+
+        .lifestyle-experience-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .lifestyle-experience-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .lifestyle-experience-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--lifestyle-transition);
+        }
+
+        .lifestyle-experience-card:hover .lifestyle-experience-image img {
+            transform: scale(1.1);
+        }
+
+        .lifestyle-experience-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: var(--lifestyle-primary-color);
+            color: var(--lifestyle-white-color);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .lifestyle-experience-content {
+            padding: 1.5rem;
+        }
+
+        .lifestyle-experience-title {
+            font-size: 1.3rem;
+            color: var(--lifestyle-primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .lifestyle-experience-description {
+            color: var(--lifestyle-text-color);
+            margin-bottom: 1rem;
+        }
+
+        .lifestyle-experience-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        .lifestyle-experience-rating {
+            color: #ffc107;
+        }
+
+        /* Blog Section */
+        .lifestyle-blog-section {
+            padding: 5rem 5%;
+            background-color: var(--lifestyle-light-color);
+        }
+
+        .lifestyle-blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .lifestyle-blog-card {
+            background-color: var(--lifestyle-white-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--lifestyle-transition);
+        }
+
+        .lifestyle-blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .lifestyle-blog-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .lifestyle-blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--lifestyle-transition);
+        }
+
+        .lifestyle-blog-card:hover .lifestyle-blog-image img {
+            transform: scale(1.1);
+        }
+
+        .lifestyle-blog-content {
+            padding: 1.5rem;
+        }
+
+        .lifestyle-blog-date {
+            font-size: 0.8rem;
+            color: #777;
+            margin-bottom: 0.5rem;
+        }
+
+        .lifestyle-blog-title {
+            font-size: 1.2rem;
+            color: var(--lifestyle-primary-color);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .lifestyle-blog-excerpt {
+            color: var(--lifestyle-text-color);
+            margin-bottom: 1rem;
+        }
+
+        .lifestyle-blog-link {
+            color: var(--lifestyle-primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            transition: var(--lifestyle-transition);
+        }
+
+        .lifestyle-blog-link i {
+            margin-left: 5px;
+            transition: var(--lifestyle-transition);
+        }
+
+        .lifestyle-blog-link:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Newsletter Section */
+        .lifestyle-newsletter-section {
+            padding: 5rem 5%;
+            background: linear-gradient(135deg, var(--lifestyle-primary-color), var(--lifestyle-secondary-color));
+            color: var(--lifestyle-white-color);
+            text-align: center;
+        }
+
+        .lifestyle-newsletter-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .lifestyle-newsletter-title {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .lifestyle-newsletter-description {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .lifestyle-newsletter-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .lifestyle-newsletter-input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+        }
+
+        .lifestyle-newsletter-btn {
+            background-color: var(--lifestyle-white-color);
+            color: var(--lifestyle-primary-color);
+            border: none;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--lifestyle-transition);
+        }
+
+        .lifestyle-newsletter-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Animations */
+        @keyframes lifestyleFadeIn {
+            from {
+                opacity: 0;
             }
-            
-            .business-categories-grid {
-                grid-template-columns: 1fr;
+            to {
+                opacity: 1;
             }
         }
+
+        @keyframes lifestyleSlideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes lifestyleSlideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 992px) {
+            .lifestyle-hero-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .lifestyle-hero-content {
+                padding-right: 0;
+                margin-bottom: 2rem;
+            }
+
+            .lifestyle-hero-title {
+                font-size: 2.8rem;
+            }
+
+            .lifestyle-hero-buttons {
+                justify-content: center;
+            }
+
+            .lifestyle-hero-image {
+                width: 100%;
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .lifestyle-hero-title {
+                font-size: 2.2rem;
+            }
+
+            .lifestyle-newsletter-form {
+                flex-direction: column;wellness
+
+
+
+
+                

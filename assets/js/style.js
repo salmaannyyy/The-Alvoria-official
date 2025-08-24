@@ -1060,3 +1060,231 @@ document.addEventListener('DOMContentLoaded', function () {
                 alert(`Opening article: ${cardTitle}`);
             });
         });
+
+
+/* ------------------------- healthcare-page -------------------------------------------------- */
+
+        // Add interactive elements
+document.addEventListener('DOMContentLoaded', function() {
+    // Smooth scroll for CTA button
+    document.querySelector('.healthcare-cta-button').addEventListener('click', function(e) {
+        e.preventDefault();
+        // Add your contact form navigation logic here
+        console.log('Contact Us clicked');
+    });
+    
+    // Add parallax effect to background circles
+    document.addEventListener('mousemove', function(e) {
+        const circles = document.querySelectorAll('.healthcare-circle');
+        const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
+        circles.forEach((circle, index) => {
+            const speed = (index + 1) * 20;
+            const xOffset = (x - 0.5) * speed;
+            const yOffset = (y - 0.5) * speed;
+            circle.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+        });
+    });
+    
+    // Animate stat numbers on scroll
+    const observerOptions = {
+        threshold: 0.5,
+        rootMargin: '0px'
+    };
+    
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animationPlayState = 'running';
+            }
+        });
+    }, observerOptions);
+    
+    document.querySelectorAll('.healthcare-stat-box').forEach(box => {
+        box.style.animationPlayState = 'paused';
+        observer.observe(box);
+    });
+});
+
+/* ------------------------- ecommerce-page -------------------------------------------------- */
+
+   // Accordion functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const accordionItems = document.querySelectorAll('.ecommerce-accordion-item');
+            
+            accordionItems.forEach(item => {
+                const header = item.querySelector('.ecommerce-accordion-header');
+                
+                header.addEventListener('click', () => {
+                    // Close all other accordion items
+                    accordionItems.forEach(otherItem => {
+                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
+                            otherItem.querySelector('.ecommerce-accordion-content').style.maxHeight = '0';
+                        }
+                    });
+                    
+                    // Toggle current accordion item
+                    item.classList.toggle('active');
+                    const content = item.querySelector('.ecommerce-accordion-content');
+                    
+                    if (item.classList.contains('active')) {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                    } else {
+                        content.style.maxHeight = '0';
+                    }
+                });
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Add scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for animation
+            const animatedElements = document.querySelectorAll('.ecommerce-content-grid > div, .ecommerce-partner-section, .ecommerce-faq-section');
+            
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+
+
+            // Add interactivity to the play button
+        document.querySelector('.e-commerce-play-button').addEventListener('click', function() {
+            alert('Video would play here in a real implementation');
+        });
+
+        // Add click tracking for analytics
+        document.querySelectorAll('.e-commerce-read-more, .e-commerce-link-item').forEach(element => {
+            element.addEventListener('click', function(e) {
+                // In a real implementation, this would send analytics data
+                console.log('Element clicked:', this.textContent.trim());
+            });
+        });
+
+/* ------------------------- wellness-page -------------------------------------------------- */
+
+          // Newsletter form submission
+        const newsletterForm = document.querySelector('.lifestyle-newsletter-form');
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const emailInput = document.querySelector('.lifestyle-newsletter-input');
+            
+            // Create success message
+            const successMessage = document.createElement('div');
+            successMessage.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+            successMessage.style.color = 'white';
+            successMessage.style.padding = '1rem';
+            successMessage.style.borderRadius = '5px';
+            successMessage.style.marginTop = '1rem';
+            successMessage.textContent = `Thank you! We've added ${emailInput.value} to our newsletter.`;
+            
+            // Add success message after form
+            newsletterForm.parentNode.appendChild(successMessage);
+            
+            // Reset form
+            emailInput.value = '';
+            
+            // Remove success message after 5 seconds
+            setTimeout(() => {
+                successMessage.remove();
+            }, 5000);
+        });
+
+        // Add animation on scroll
+        const observerrrOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observerrr = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerrrOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observerrr.observe(section);
+        });
+
+        
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Select all elements that should be animated on scroll
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    
+    // If no such elements exist, exit the script
+    if (!animatedElements || animatedElements.length === 0) {
+        console.log("No animated elements found on this business page");
+        return;
+    }
+    
+    // Create a new Intersection Observer for business animations
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            // If the element is in the viewport (visible on screen)
+            if (entry.isIntersecting) {
+                // Add the .is-visible class to trigger the CSS animation
+                entry.target.classList.add('is-visible');
+                
+                // Stop observing the element so the animation only happens once
+                observer.unobserve(entry.target);
+                
+                // Optional: Log for business analytics
+                console.log("Business content section animated:", entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1 // Trigger the animation when 10% of the element is visible
+    });
+    
+    // Attach the observer to each of the animated elements
+    animatedElements.forEach(element => {
+        observer.observe(element);
+    });
+    
+    // Business enhancement: Log initialization
+    console.log("Business scroll animations initialized successfully");
+});
+
+        
